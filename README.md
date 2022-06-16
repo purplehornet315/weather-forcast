@@ -5,3 +5,5 @@ This page is to help individuals select a location and see a five day forecast o
 It will use local storage to save the searches of the users.
 
 We are using the open weather api to fetch the weather conditions.
+
+Link to the live page: https://purplehornet315.github.io/weather-forcast/

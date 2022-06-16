@@ -70,7 +70,11 @@ var displayCurrent = function (data) {
 
     var currentWeatherBox = document.createElement("div");
     currentWeatherBox.setAttribute("class", "card-header");
-    currentWeatherBox.textContent = "Today";
+    currentWeatherBox.textContent = moment().format('MM/D/YYYY');
+
+    var currentIcon = document.createElement("img");
+    currentIcon.setAttribute("src", "https://openweathermap.org/img/w/"+ data.current.weather[0].icon + ".png");
+    currentWeatherBox.appendChild(currentIcon);
 
     var currentTemp = document.createElement("div");
     currentTemp.textContent = "Temperature: " + data.current.temp;
@@ -94,8 +98,7 @@ var displayCurrent = function (data) {
 
 var displayCity = function () {
     repoContainerEl.innerHTML = "";
-    var pastCity = JSON.parse(localStorage.getItem("city"));
-    //     var keys = Object.keys(localStorage);
+    var pastCity = JSON.parse(localStorage.getItem("city")) || [];
     pastCity.forEach(city => {
         var cityEL = document.createElement("div");
         cityEL.textContent = city;
@@ -112,7 +115,11 @@ var displayFiveDay = function (data) {
 
         var currentWeatherBox = document.createElement("div");
         currentWeatherBox.setAttribute("class", "card-header");
-        currentWeatherBox.textContent = "Day " + [i + 1];
+        currentWeatherBox.textContent = moment().add([i] + 10,"hours").format("MM/DD/YYYY");
+
+        var currentIcon = document.createElement("img");
+        currentIcon.setAttribute("src", "https://openweathermap.org/img/w/"+ data.daily[i].weather[0].icon + ".png");
+        currentWeatherBox.appendChild(currentIcon);
 
         var currentTemp = document.createElement("div");
         currentTemp.textContent = "Temperature: " + data.daily[i].temp.max;
