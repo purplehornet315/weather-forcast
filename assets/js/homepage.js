@@ -90,6 +90,15 @@ var displayCurrent = function (data) {
 
     var currentUVI = document.createElement("div");
     currentUVI.textContent = "UV Index: " + data.current.uvi;
+    if(data.current.uvi<= 2){
+        currentUVI.style.backgroundColor = "green"
+    }else if(data.current.uvi>= 3 || data.current.uvi<=5){
+        currentUVI.style.backgroundColor = "yellow"
+    }else if(data.current.uvi>= 6 || data.current.uvi<=7){
+        currentUVI.style.backgroundColor = "orange"
+    }else{
+        currentUVI.style.backgroundColor = "red"
+    };
     currentWeatherBox.appendChild(currentUVI);
 
     currentSection.appendChild(currentWeatherBox);
@@ -115,7 +124,7 @@ var displayFiveDay = function (data) {
 
         var currentWeatherBox = document.createElement("div");
         currentWeatherBox.setAttribute("class", "card-header");
-        currentWeatherBox.textContent = moment().add([i] + 10,"hours").format("MM/DD/YYYY");
+        currentWeatherBox.textContent = moment.unix(data.daily[i].dt).format("MM/DD/YYYY");
 
         var currentIcon = document.createElement("img");
         currentIcon.setAttribute("src", "https://openweathermap.org/img/w/"+ data.daily[i].weather[0].icon + ".png");
